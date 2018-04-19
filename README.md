@@ -6,6 +6,13 @@ If you manage a Slack channel and an Outlook-365 distribution list of the same n
 This tool will help reduce the work to manually reconcile both populations, but caveat emptor:
 
 - People do not necessarily have the same primary email account name (without the domain) and Slack handle.
-- Outlook distribution lists can contain suspended accounts
+- Outlook distribution lists can contain suspended accounts.
 
 Nevertheless, this helped me manage the populations.
+
+## TODO ##
+Plenty of improvements for someday:
+
+- Hack on Outlook APIs to bypass the copy and paste an expanded Outlook list from the client
+- map mismatched account names
+- blackhole suspended accounts
