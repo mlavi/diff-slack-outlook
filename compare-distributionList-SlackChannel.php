@@ -4,17 +4,18 @@
 # DEPENDENCIES:
 # - php 5.5
 # - diff (GNU diffutils) 2.8.1
-# - ./$SLACK_API_KEY (file defined below)
+# - Static configuration files, defined in variables, below:
+#   - ./$ACCOUNT_SUPPRESSION (file defined below)
+#   - ./$SLACK_TO_PRIMARY_EMAIL (file defined below)
+#   - ./$SLACK_API_KEY (file defined below)
 #   https://api.slack.com/apps/A7T3D33RB/general
 #   requires Slack Oauth access token with permission scopes of: (might get away with less)
 #    groups:history, groups:read
 #    team:read
 #    users.profile:read
 #    users:read, users:read.email
-# - ./$ALIAS . '.outlook.txt'
+#    - ./$ALIAS . '.outlook.txt'
 #    Outlook Distribution List, cut and paste from Mac client after expanding distribution list/group alias.
-# - ./$ACCOUNT_SUPPRESSION (file defined below)
-# - ./$SLACK_TO_PRIMARY_EMAIL (file defined below)
 
 # TODO: Use Outlook365 hosted email APIs for current distribution list seed,
 #       in the meantime, cut and paste expanded list from Outlook client into text file.
@@ -139,6 +140,9 @@ function outlook_process()
     if (surpress($account) != '') {
       $group[] = $account;
     }
+    /* else list generator:
+      $group[] = $full_name . ',' . $account . '@nutanix.com';
+    */
   }
 
   natsort($group); # print_r($group);
@@ -288,6 +292,7 @@ function surpress($candidate)
       print "surpress|Omitting email account: $account == $candidate.\n";
       $surpression_flag = TRUE;
       $SURPRESSED++;
+      break;
     // } else {
     //   print "surpress|Keeping email account: $account != $candidate.\n";
     }
@@ -313,6 +318,5 @@ Summary:
 -  Supression count: $SURPRESSED / $population_surpress
 
 diff --suppress-common-lines --side-by-side --ignore-blank-lines \
-  $ALIAS*processed.txt > $ALIAS.diff.txt
-
+  $ALIAS*processed.txt > $ALIAS.diff.txt ; echo; ls -l $ALIAS.outlook.txt
 EoM;
