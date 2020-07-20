@@ -7,7 +7,7 @@ This tool will help reduce the work to manually reconcile both populations, but 
 
 - People do not necessarily have the same primary email account name (without the domain) and Slack handle
 - Outlook distribution lists can contain suspended accounts
-
+  - https://outlook.office.com/mail/options/general/distributionGroups
 Nevertheless, this helped me manage the populations.
 
 ## TODO ##
